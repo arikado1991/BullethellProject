@@ -8,7 +8,7 @@ public class EnemyShipStat : ShipStat
     public static UnityEvent <EnemyShipStat> onEnemyDestroyedEvent;
     [SerializeField] protected int mKillScore;
     // Start is called before the first frame update
-    void Awake()
+    protected override void Awake()
     {
         mTag = Tag.Enemy;
     }
@@ -19,9 +19,9 @@ public class EnemyShipStat : ShipStat
         
     }
 
-    protected override void GetHit (int damage)
+    protected override void GetHit (int pDamage)
     {
-        base.GetHit(damage);
+        base.GetHit(pDamage);
         if (mHealth <= 0)
         {
             onEnemyDestroyedEvent.Invoke(this);

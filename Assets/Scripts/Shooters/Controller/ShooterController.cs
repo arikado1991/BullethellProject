@@ -37,7 +37,6 @@ public  class ShooterController : MonoBehaviour
             {
                 s.SetTag (mTag);
                 mOnShootEvent.AddListener (s.Shoot);
-                Debug.Log ("Got shooter.\n");
             }
         }
         catch (NullReferenceException  e) 

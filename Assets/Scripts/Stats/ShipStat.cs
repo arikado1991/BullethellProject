@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-public class ShipStat : MonoBehaviour
+public class ShipStat : PoolableObject
 {
 
     protected int mHealth;
@@ -12,13 +12,13 @@ public class ShipStat : MonoBehaviour
     protected Tag mTag;
 
 
-    protected virtual void OnEnable()
+    protected override void OnEnable()
     {
         Reset();
     }
     
 
-    virtual protected void Reset()
+    protected virtual void Reset()
     {
         mHealth = mMaxHealth;
     }
