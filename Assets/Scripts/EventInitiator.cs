@@ -12,11 +12,13 @@ public class EventInitiator : MonoBehaviour
     {
         EnemyShipStat.onEnemyDestroyedEvent = new UnityEvent<EnemyShipStat>();
 
-        EnemySpawner.onObjectSpawnRequestAtIndexedSpawningPointEvent = new UnityEvent<PoolableObject, int, Vector3>();
-        EnemySpawner.onObJectSpawnRequestAtPositionEvent = new UnityEvent <PoolableObject, Vector3, Vector3>();
+        IngameObjectManager.onObjectSpawnRequestAtIndexedSpawningPointEvent = new UnityEvent<PoolableObject, int, Vector3>();
+        IngameObjectManager.onObJectSpawnRequestAtPositionEvent = new UnityEvent <PoolableObject, Vector3, Vector3>();
 
-        EnemySpawner.onEnemyFledEvent = new UnityEvent<ShipStat>();
-        EnemySpawner.onEnemyShipSpawnEvent = new UnityEvent<EnemyShipStat>();
+        IngameObjectManager.onEnemyFledEvent = new UnityEvent<ShipStat>();
+
+        EnemyWaveSpawner.onEnemyShipSpawnEvent = new UnityEvent<EnemyShipStat>();
+        EnemyWaveSpawner.onEnemyWaveStartEvent = new UnityEvent<int>();
 
         PlayerShipStat.onPlayerDestroyedEvent = new UnityEvent <PlayerShipStat>();
         PlayerShipStat.onPlayerGetHitEvent = new UnityEvent ();
@@ -31,6 +33,8 @@ public class EventInitiator : MonoBehaviour
         GameEvaluator.onPlayerScoreChangeEvent = new UnityEvent<int>();
         GameEvaluator.onNewHighscoreEvent = new UnityEvent<int, int>();
         GameEvaluator.onNormalScoreEvent = new UnityEvent<int, int>();
+
+
 
         scene.SetActive(true);
     }

@@ -4,27 +4,20 @@ using UnityEngine;
 using UnityEngine.Events;
 using System;
 
-public class EnemySpawner : MonoBehaviour
+public class IngameObjectManager : MonoBehaviour
 {
     static public UnityEvent <ShipStat> onEnemyFledEvent;
     static public UnityEvent<PoolableObject, int, Vector3> onObjectSpawnRequestAtIndexedSpawningPointEvent;
     static public UnityEvent<PoolableObject, Vector3, Vector3> onObJectSpawnRequestAtPositionEvent;
-    static public UnityEvent<EnemyShipStat> onEnemyShipSpawnEvent;
+   
     // Start is called before the first frame update
     // GameObject[] spawningList;
-    static EnemySpawner mInstance;
-    public static EnemySpawner Instance()
+    static IngameObjectManager mInstance;
+    public static IngameObjectManager Instance()
     {
         return mInstance;
     }
 
-    [SerializeField]
-    WaveDescription mWaveDescription;
-
-    [SerializeField]
-    Transform[] mSpawningPointTransforms;
-    float cooldown;
-    int currentEnemyIndex;
 
     Dictionary<string, ObjectPool> mObjectPoolDictionary;
 
@@ -44,9 +37,6 @@ public class EnemySpawner : MonoBehaviour
 
     void OnEnable()
     {
-        cooldown = 3;
-        currentEnemyIndex = 0;
-
         onEnemyFledEvent.AddListener(OnEnemyFledEventHandler);
         EnemyShipStat.onEnemyDestroyedEvent.AddListener (OnEnemyFledEventHandler);
         
@@ -70,7 +60,7 @@ public class EnemySpawner : MonoBehaviour
     {
         try
         {
-
+            /*
             if (cooldown <= 0)
             {
                 int spawningPointIndex = 0;
@@ -91,7 +81,7 @@ public class EnemySpawner : MonoBehaviour
                 cooldown = mWaveDescription.mEnemySpawningInstruction[currentEnemyIndex].mDelay;
                 currentEnemyIndex += 1;
             }
-            cooldown -= Time.deltaTime;
+            cooldown -= Time.deltaTime;*/
         }
         catch (IndexOutOfRangeException)
         {

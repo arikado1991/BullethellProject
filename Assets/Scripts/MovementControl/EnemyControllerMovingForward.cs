@@ -30,7 +30,7 @@ public class EnemyControllerMovingForward : MovementController
     {
         if (transform.position.y < -Const.C_VERTICAL_LIMIT - 2)
         {
-            EnemySpawner.onEnemyFledEvent.Invoke(this.GetComponent<ShipStat>());
+            IngameObjectManager.onEnemyFledEvent.Invoke(this.GetComponent<ShipStat>());
             return;
         }
     }

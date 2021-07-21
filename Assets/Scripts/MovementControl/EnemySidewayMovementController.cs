@@ -25,9 +25,10 @@ public class EnemySidewayMovementController : EnemyControllerMovingForward
         base.OnEnable();
         Reset();
     }
+
     protected void Update ()
     { 
-    CheckEnemyFled();
+        CheckEnemyFled();
         if (mVerticalRemainingDistance <= -C_VERTICAL_STEP) //move left or right
         {
             transform.position += mMoveSpeed * mHorizontalDirection * Vector3.right * Time.deltaTime;

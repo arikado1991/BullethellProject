@@ -9,7 +9,7 @@ public class GameEvaluator : MonoBehaviour
     int mPlayerHealth;
     int mTotalEnemyCount;
     int mRemainingEnemyCount;
-    int mEenemyFledCount;
+    int mEnemyFledCount;
     int mEnemyDestroyedCount;
 
     public static UnityEvent onLevelClearEvent;
@@ -23,14 +23,25 @@ public class GameEvaluator : MonoBehaviour
     void OnEnable()
     {
         EnemyShipStat.onEnemyDestroyedEvent.AddListener(OnEnemyDestroyedEventHandler);
-        EnemySpawner.onEnemyFledEvent.AddListener(OnEnemyFledEventHandler);
-        EnemySpawner.onEnemyShipSpawnEvent.AddListener(OnEnemyShipSpawnEventHandler);
+        IngameObjectManager.onEnemyFledEvent.AddListener(OnEnemyFledEventHandler);
+        EnemyWaveSpawner.onEnemyShipSpawnEvent.AddListener(OnEnemyShipSpawnEventHandler);
 
         PlayerShipStat.onPlayerDestroyedEvent.AddListener(OnPlayerDestroyedEventHandler);
+        EnemyWaveSpawner.onEnemyWaveStartEvent.AddListener(OnWaveStartEventHandler);
 
         mScore = 0;
-        mTotalEnemyCount = mRemainingEnemyCount = mEnemyDestroyedCount = mEenemyFledCount = 0;
+        mTotalEnemyCount = mRemainingEnemyCount = mEnemyDestroyedCount = mEnemyFledCount = 0;
 
+    }
+
+    private void OnDisable()
+    {
+        EnemyShipStat.onEnemyDestroyedEvent.RemoveListener(OnEnemyDestroyedEventHandler);
+        IngameObjectManager.onEnemyFledEvent.RemoveListener(OnEnemyFledEventHandler);
+        EnemyWaveSpawner.onEnemyShipSpawnEvent.RemoveListener(OnEnemyShipSpawnEventHandler);
+
+        PlayerShipStat.onPlayerDestroyedEvent.RemoveListener(OnPlayerDestroyedEventHandler);
+        EnemyWaveSpawner.onEnemyWaveStartEvent.RemoveListener(OnWaveStartEventHandler);
     }
 
     // Update is called once per frame
@@ -50,7 +61,7 @@ public class GameEvaluator : MonoBehaviour
 
     void OnEnemyFledEventHandler(ShipStat enemy)
     {
-        mEenemyFledCount++;
+        mEnemyFledCount++;
         mRemainingEnemyCount--;
         CheckWaveEnded();
     }
@@ -62,18 +73,17 @@ public class GameEvaluator : MonoBehaviour
 
     void OnEnemyShipSpawnEventHandler(EnemyShipStat enemy)
     {
-        mTotalEnemyCount++;
         mRemainingEnemyCount++;
     }
 
     bool CheckWaveEnded()
     {
-        if (mTotalEnemyCount == 6 &&  mRemainingEnemyCount == 0)
+        if (mTotalEnemyCount > mEnemyFledCount + mEnemyDestroyedCount)
         {
-            EndWave();
-            return true;
+            return false;
         }
-        return false;
+        EndWave();
+        return true;
     }
 
     void EndWave()
@@ -91,5 +101,11 @@ public class GameEvaluator : MonoBehaviour
             onNormalScoreEvent.Invoke(mScore, prevHighscore);
             PlayerPrefs.DeleteKey("Highscore");
         }
+    }
+
+    void OnWaveStartEventHandler(int waveEnemyCount)
+    {
+        Debug.Log("Wave enemy count = " + waveEnemyCount);
+        mTotalEnemyCount = waveEnemyCount;
     }
 }

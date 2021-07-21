@@ -100,6 +100,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7144598522207570339}
   - component: {fileID: 7144598522207570338}
+  - component: {fileID: 5791420012070499821}
   m_Layer: 0
   m_Name: Spawner
   m_TagString: Untagged
@@ -142,10 +143,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7144598522207570364}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: becca07d1efd041eea5e0c7b305f4e9c, type: 3}
+  m_Script: {fileID: 11500000, guid: 028c4d9af20db4342b266c944ee6c051, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mWaveDescription: {fileID: 11400000, guid: 5a5ed3fb76fc24288b2c5873b1f3e9cc, type: 2}
+  mWaveDescription: {fileID: 11400000, guid: 2bc56f2cb76474a9d98cdbd20f086120, type: 2}
   mSpawningPointTransforms:
   - {fileID: 7144598522520185257}
   - {fileID: 7144598522545963562}
@@ -159,6 +160,18 @@ MonoBehaviour:
   - {fileID: 7144598521942252167}
   - {fileID: 7144598522128729193}
   - {fileID: 7144598522260585258}
+--- !u!114 &5791420012070499821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7144598522207570364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6a60968aa26a4fd78b54adadb29a862, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7144598522260585259
 GameObject:
   m_ObjectHideFlags: 0

@@ -41,7 +41,7 @@ public  class ShooterController : MonoBehaviour
         }
         catch (NullReferenceException  e) 
         {
-            Debug.Log (String.Format("No shooter components found in the children of %s.\n", gameObject.name));
+            Debug.Log (String.Format("No shooter components found in the children of {0}.\n", gameObject.name));
         }
     }
 

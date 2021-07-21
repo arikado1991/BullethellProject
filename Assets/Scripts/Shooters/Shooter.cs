@@ -34,7 +34,7 @@ public class Shooter : MonoBehaviour
         Projectile newProjectTile;
         try
         {
-            newProjectTile = EnemySpawner.Instance().SpawnObject(transform.position, mProjectile, transform.up).GetComponent<Projectile>();
+            newProjectTile = IngameObjectManager.Instance().SpawnObject(transform.position, mProjectile, transform.up).GetComponent<Projectile>();
             newProjectTile.transform.up = transform.up;
             newProjectTile.SetTag(mTag);
 
