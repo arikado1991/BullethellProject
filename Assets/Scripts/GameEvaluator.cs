@@ -88,7 +88,9 @@ public class GameEvaluator : MonoBehaviour
 
     void EndWave()
     {
+
         onLevelClearEvent.Invoke();
+        OnDisable();
         int prevHighscore = PlayerPrefs.GetInt("Highscore", -1);
         if (prevHighscore < mScore)
         {
@@ -99,7 +101,10 @@ public class GameEvaluator : MonoBehaviour
         else
         {
             onNormalScoreEvent.Invoke(mScore, prevHighscore);
+#if DEBUG
+
             PlayerPrefs.DeleteKey("Highscore");
+#endif
         }
     }
 

@@ -9,7 +9,8 @@ public  class ShooterController : MonoBehaviour
     protected Tag mTag; 
     protected UnityEvent mOnShootEvent;
 
-    Shooter[] mShooters = null;
+
+    [SerializeField] protected Shooter[] mShooters = null;
     // Start is called before the first frame update
     virtual protected void Awake()
     {
@@ -29,14 +30,17 @@ public  class ShooterController : MonoBehaviour
     virtual protected void ReadyAllShooters ()
     {
         ClearAllShooter();
-        mShooters = transform.GetComponentsInChildren<Shooter> ();
+       // mShooters = transform.GetComponentsInChildren<Shooter> ();
      
         try 
         {
             foreach (Shooter s in mShooters)
             {
                 s.SetTag (mTag);
-                mOnShootEvent.AddListener (s.Shoot);
+                if (s.gameObject.activeInHierarchy == true)
+                { 
+                    mOnShootEvent.AddListener (s.Shoot);
+                }
             }
         }
         catch (NullReferenceException  e) 

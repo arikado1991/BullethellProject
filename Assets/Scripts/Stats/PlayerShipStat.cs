@@ -11,20 +11,19 @@ public class PlayerShipStat : ShipStat
 
 
 
-
     // Start is called before the first frame update
     protected override void Awake()
     {
         mTag = Tag.Player;
 
         
-        
+
     }
 
     protected override void OnEnable()
     {
         base.OnEnable();
-
+        PlayerPowerUpProcessor.onHealthCapsuleAcquiredEvent.AddListener(OnHealthCapsuleAcquiredEventHandler);
         Reset();
     }
   
@@ -35,7 +34,7 @@ public class PlayerShipStat : ShipStat
         base.Reset();
 
         onPlayerHealthChangeEvent.Invoke(mHealth);
-
+       
     }
 
     // Update is called once per frame
@@ -55,4 +54,15 @@ public class PlayerShipStat : ShipStat
         }
     }
 
+    void OnHealthCapsuleAcquiredEventHandler ()
+    {
+        mHealth++;
+        onPlayerHealthChangeEvent.Invoke(mHealth);
+    }
+
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        PlayerPowerUpProcessor.onHealthCapsuleAcquiredEvent.RemoveListener(OnHealthCapsuleAcquiredEventHandler);
+    }
 }

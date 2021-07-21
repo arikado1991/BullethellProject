@@ -39,8 +39,12 @@ public class EventInitiator : MonoBehaviour
         GameEvaluator.onNewHighscoreEvent = new UnityEvent<int, int>();
         GameEvaluator.onNormalScoreEvent = new UnityEvent<int, int>();
 
-        OptionsScript.onSoundEffectSettingChange = new UnityEvent<bool>();
-        OptionsScript.onBackgroundMusicSettingChange = new UnityEvent<bool>();
+
+        PowerUp.onPowerUpAcquireEvent = new UnityEvent<PowerUpType, Object>();
+        PlayerPowerUpProcessor.onExtraShooterPowerUpAcquiredEvent = new UnityEvent();
+        PlayerPowerUpProcessor.onHealthCapsuleAcquiredEvent = new UnityEvent();
+     //   OptionsScript.onSoundEffectSettingChange = new UnityEvent<bool>();
+      //  OptionsScript.onBackgroundMusicSettingChange = new UnityEvent<bool>();
 
         scene.SetActive(true);
     }

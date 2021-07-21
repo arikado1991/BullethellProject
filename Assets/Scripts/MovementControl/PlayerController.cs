@@ -19,7 +19,7 @@ public class PlayerController : MovementController
         {
             rb2d = transform.GetComponent<Rigidbody2D>();
         }
-        catch (NullReferenceException e)
+        catch (NullReferenceException)
         {
             Debug.LogError (string.Format ("No rigidbody attached to object %s" ,this.name));
         }
