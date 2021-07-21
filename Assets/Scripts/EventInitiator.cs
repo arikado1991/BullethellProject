@@ -2,14 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class EventInitiator : MonoBehaviour
 {
 
     [SerializeField] GameObject scene;
+    [SerializeField] Scene currentScene;
     // Start is called before the first frame update
     void Awake()
     {
+        currentScene = SceneManager.GetActiveScene();
+        DontDestroyOnLoad(this.gameObject);
+
         EnemyShipStat.onEnemyDestroyedEvent = new UnityEvent<EnemyShipStat>();
 
         IngameObjectManager.onObjectSpawnRequestAtIndexedSpawningPointEvent = new UnityEvent<PoolableObject, int, Vector3>();
@@ -34,7 +39,8 @@ public class EventInitiator : MonoBehaviour
         GameEvaluator.onNewHighscoreEvent = new UnityEvent<int, int>();
         GameEvaluator.onNormalScoreEvent = new UnityEvent<int, int>();
 
-
+        OptionsScript.onSoundEffectSettingChange = new UnityEvent<bool>();
+        OptionsScript.onBackgroundMusicSettingChange = new UnityEvent<bool>();
 
         scene.SetActive(true);
     }
