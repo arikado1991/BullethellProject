@@ -34,13 +34,13 @@ public class Projectile : PoolableObject
         transform.position += transform.up * moveSpeed * Time.deltaTime;
         if (Mathf.Abs(transform.position.y) > Const.C_VERTICAL_LIMIT + 2)
         {
-           gameObject.SetActive(false);
+            gameObject.SetActive(false);
         }
     }
 
 
-    virtual protected void OnCollisionEnter2D (Collision2D other)
-    {   
+    virtual protected void OnCollisionEnter2D(Collision2D other)
+    {
 
 
         Tag collidedTag = Tag.Unassigned;
@@ -57,20 +57,19 @@ public class Projectile : PoolableObject
             catch (NullReferenceException) { }
         }
 
-        if (collidedTag != Tag.Unassigned && (int) mTag * (int)collidedTag < 0 )
+        if (collidedTag != Tag.Unassigned && (int)mTag * (int)collidedTag < 0)
         {
-           
+
 
             Debug.Log(string.Format("Proj tag: {0}, hit tag: {1}", mTag, collidedTag));
             other.gameObject.SendMessage("GetHit", damage);
             gameObject.SetActive(false);
-           // GetHit();
         }
 
-    
+
     }
+    public void GetHit(int damage)
+    {
 
-  
-
-
+    }
 }

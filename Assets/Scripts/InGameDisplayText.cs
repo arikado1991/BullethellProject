@@ -9,8 +9,7 @@ public class InGameDisplayText : MonoBehaviour
     [SerializeField] TextMeshProUGUI mHealthText;
     [SerializeField]  TextMeshProUGUI mScoreText;
     [SerializeField] TextMeshProUGUI mGameOverText;
-
-    [SerializeField] Text mText;
+    [SerializeField] TextMeshProUGUI mWaveClearedText;
 
     // Start is called before the first frame update
     void OnEnable()
@@ -19,7 +18,6 @@ public class InGameDisplayText : MonoBehaviour
         PlayerShipStat.onPlayerDestroyedEvent.AddListener (OnPlayerDestroyedEventHandler);
         PlayerShipStat.onPlayerHealthChangeEvent.AddListener (OnPlayerHealthChangeEventHandler);
         PlayerShipStat.onPlayerScoreChangeEvent.AddListener (OnPlayerScoreChangeEventHandler);
-        mText = gameObject.GetComponent<Text>();
     }
     void OnDisable()
     {
@@ -47,5 +45,9 @@ public class InGameDisplayText : MonoBehaviour
     public void OnPlayerScoreChangeEventHandler  (int pScore) 
     {
         mScoreText.text = string.Format("Score: {0}", pScore.ToString());
+    }
+    public void OnPlayerClearWave()
+    {
+        mWaveClearedText.gameObject.SetActive(true);
     }
 }
