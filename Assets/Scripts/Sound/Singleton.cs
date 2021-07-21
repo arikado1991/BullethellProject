@@ -12,6 +12,10 @@ public class Singleton : MonoBehaviour
         {
             GameObject.Destroy (gameObject);
         }
+        else
+        {
+            mInstance = this;
+        }
     }
 
     public static Singleton Instance() 

@@ -13,11 +13,14 @@ public class GameEvaluator : MonoBehaviour
     int mEnemyDestroyedCount;
 
     public static UnityEvent onLevelClearEvent;
+    public static UnityEvent<int> onPlayerScoreChangeEvent;
 
+    public static UnityEvent<int, int> onNewHighscoreEvent;
+    public static UnityEvent<int, int> onNormalScoreEvent;
 
 
     // Start is called before the first frame update
-    void OnEnable ()
+    void OnEnable()
     {
         EnemyShipStat.onEnemyDestroyedEvent.AddListener(OnEnemyDestroyedEventHandler);
         EnemySpawner.onEnemyFledEvent.AddListener(OnEnemyFledEventHandler);
@@ -33,36 +36,60 @@ public class GameEvaluator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
     }
 
-    void OnEnemyDestroyedEventHandler (EnemyShipStat enemy)
+    void OnEnemyDestroyedEventHandler(EnemyShipStat pEnemy)
     {
         mRemainingEnemyCount--;
         mEnemyDestroyedCount++;
+        mScore += pEnemy.GetKillScore();
+        onPlayerScoreChangeEvent.Invoke(mScore);
+        CheckWaveEnded();
 
-        if (mTotalEnemyCount == 20 &&  mRemainingEnemyCount == 0)
-        {
-            onLevelClearEvent.Invoke();
-        }
     }
 
-    void OnEnemyFledEventHandler (ShipStat enemy)
+    void OnEnemyFledEventHandler(ShipStat enemy)
     {
         mEenemyFledCount++;
         mRemainingEnemyCount--;
+        CheckWaveEnded();
     }
 
-    void OnPlayerDestroyedEventHandler (PlayerShipStat player)
+    void OnPlayerDestroyedEventHandler(PlayerShipStat player)
     {
-       
+
     }
 
-    void OnEnemyShipSpawnEventHandler (EnemyShipStat enemy)
+    void OnEnemyShipSpawnEventHandler(EnemyShipStat enemy)
     {
         mTotalEnemyCount++;
         mRemainingEnemyCount++;
     }
 
+    bool CheckWaveEnded()
+    {
+        if (mTotalEnemyCount == 6 &&  mRemainingEnemyCount == 0)
+        {
+            EndWave();
+            return true;
+        }
+        return false;
+    }
 
+    void EndWave()
+    {
+        onLevelClearEvent.Invoke();
+        int prevHighscore = PlayerPrefs.GetInt("Highscore", -1);
+        if (prevHighscore < mScore)
+        {
+            PlayerPrefs.SetInt("Highscore", mScore);
+            onNewHighscoreEvent.Invoke(mScore, prevHighscore);
+
+        }
+        else
+        {
+            onNormalScoreEvent.Invoke(mScore, prevHighscore);
+            PlayerPrefs.DeleteKey("Highscore");
+        }
+    }
 }

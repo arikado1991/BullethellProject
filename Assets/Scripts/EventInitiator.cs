@@ -21,14 +21,16 @@ public class EventInitiator : MonoBehaviour
         PlayerShipStat.onPlayerDestroyedEvent = new UnityEvent <PlayerShipStat>();
         PlayerShipStat.onPlayerGetHitEvent = new UnityEvent ();
         PlayerShipStat.onPlayerHealthChangeEvent = new UnityEvent <int> ();
-        PlayerShipStat.onPlayerScoreChangeEvent = new UnityEvent <int> ();
+       
 
         AudioManager.onPlaySoundRequest = new UnityEvent<string> ();
 
         AudioManager.onClipFinishEvent = new UnityEvent<PoolableAudioSource> ();
 
         GameEvaluator.onLevelClearEvent = new UnityEvent();
-
+        GameEvaluator.onPlayerScoreChangeEvent = new UnityEvent<int>();
+        GameEvaluator.onNewHighscoreEvent = new UnityEvent<int, int>();
+        GameEvaluator.onNormalScoreEvent = new UnityEvent<int, int>();
 
         scene.SetActive(true);
     }
