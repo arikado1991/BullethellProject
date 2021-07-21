@@ -6,20 +6,42 @@ using System;
 
 public class EnemySpawner : MonoBehaviour
 {
-    static public UnityEvent <ShipStat> onEnemySpawnEvent;
     static public UnityEvent <ShipStat> onEnemyFledEvent;
+    static public UnityEvent<PoolableObject, int, Vector3> onObjectSpawnRequestAtIndexedSpawningPoint;
+    static public UnityEvent<PoolableObject, Vector3, Vector3> onObJectSpawnRequestAtPosition;
 
     // Start is called before the first frame update
-   // GameObject[] spawningList;
+    // GameObject[] spawningList;
+    static EnemySpawner mInstance;
+    public static EnemySpawner Instance()
+    {
+        return mInstance;
+    }
 
     [SerializeField]
     WaveDescription mWaveDescription;
+
+    [SerializeField]
+    Transform[] mSpawningPointTransforms;
     float cooldown;
     int currentEnemyIndex;
-    
+
+    Dictionary<string, ObjectPool> mObjectPoolDictionary;
+
     void Awake()
     {
+        if (mInstance == null)
+        {
+            mInstance = this;
+        }
+        else
+        {
+            GameObject.Destroy(this);
+        }
+
+        mObjectPoolDictionary = new Dictionary<string, ObjectPool>();
     }
+
     void OnEnable()
     {
         cooldown = 3;
@@ -42,7 +64,7 @@ public class EnemySpawner : MonoBehaviour
 
     void OnEnemyFledEventHandler (ShipStat enemy)
     {
-        GameObject.Destroy (enemy.gameObject);
+        enemy.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -53,24 +75,49 @@ public class EnemySpawner : MonoBehaviour
 
             if (cooldown <= 0)
             {
-                Vector3 spawnPosition = new Vector3 ( UnityEngine.Random.Range ( -7, 7 ) , 3.5f, 0);
+                int spawningPointIndex = 0;
+                Vector3 spawnPosition = mSpawningPointTransforms[spawningPointIndex].position;
 
                 ShipStat newEnemySample = mWaveDescription.mEnemySpawningInstruction[currentEnemyIndex].mEnemyController;
 
-                ShipStat newEnemyInstance = GameObject.Instantiate (newEnemySample, spawnPosition, Quaternion.identity );
-                newEnemyInstance.transform.up = Vector3.down;
-                
-                onEnemySpawnEvent.Invoke(newEnemyInstance);
+                SpawnObject(spawnPosition, newEnemySample, Vector3.down);
 
                 cooldown = mWaveDescription.mEnemySpawningInstruction[currentEnemyIndex].mDelay;
                 currentEnemyIndex += 1;
             }
             cooldown -= Time.deltaTime;
         }
-        catch (IndexOutOfRangeException e)
+        catch (IndexOutOfRangeException)
         {
             Debug.LogError("Wave is clear.\n");
             return;
         }
+    }
+
+    public PoolableObject SpawnObject (Vector3 spawnPosition, PoolableObject objectSample, Vector3 facingDirection)
+    {
+        PoolableObject newObjectInstance;
+ 
+        ObjectPool pool;
+        try
+        {
+            pool = mObjectPoolDictionary[objectSample.name];
+        }
+        catch (KeyNotFoundException)
+        {
+            pool = new ObjectPool();
+            pool.Init(objectSample, 5);
+
+            mObjectPoolDictionary[objectSample.name] = pool;
+
+
+        }
+        newObjectInstance = pool.GetObject();
+
+        newObjectInstance.transform.position = spawnPosition;
+
+        newObjectInstance.transform.up = facingDirection;
+
+        return newObjectInstance;
     }
 }

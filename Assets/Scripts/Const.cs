@@ -11,5 +11,6 @@ public class Const
 public enum Tag 
 {
     Player = 1, 
-    Enemy = -1
+    Enemy = -1,
+    Unassigned = 0
  }

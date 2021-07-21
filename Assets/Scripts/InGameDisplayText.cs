@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using TMPro;
+using UnityEngine.UI;
 public class InGameDisplayText : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI mHealthText;
     [SerializeField]  TextMeshProUGUI mScoreText;
     [SerializeField] TextMeshProUGUI mGameOverText;
+
+    [SerializeField] Text mText;
 
     // Start is called before the first frame update
     void OnEnable()
@@ -16,6 +19,7 @@ public class InGameDisplayText : MonoBehaviour
         PlayerShipStat.onPlayerDestroyedEvent.AddListener (OnPlayerDestroyedEventHandler);
         PlayerShipStat.onPlayerHealthChangeEvent.AddListener (OnPlayerHealthChangeEventHandler);
         PlayerShipStat.onPlayerScoreChangeEvent.AddListener (OnPlayerScoreChangeEventHandler);
+        mText = gameObject.GetComponent<Text>();
     }
     void OnDisable()
     {
@@ -37,11 +41,11 @@ public class InGameDisplayText : MonoBehaviour
 
     public void OnPlayerHealthChangeEventHandler (int pPlayerHealth)
     {
-        mHealthText.text = string.Format ("HP: {0}", pPlayerHealth.ToString());
+        mHealthText.text = string.Format ("Life: {0}", pPlayerHealth.ToString());
     }
 
     public void OnPlayerScoreChangeEventHandler  (int pScore) 
     {
-        mScoreText.text = string.Format("Scr: {0}", pScore.ToString());
+        mScoreText.text = string.Format("Score: {0}", pScore.ToString());
     }
 }

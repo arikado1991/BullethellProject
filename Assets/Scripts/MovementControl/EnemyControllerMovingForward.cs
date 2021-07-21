@@ -6,8 +6,14 @@ public class EnemyControllerMovingForward : MovementController
 {
     // Start is called before the first frame update
     [SerializeField]
-    float mMoveSpeed = 1f;
-    void OnEnable () 
+    protected float mMoveSpeed = 1f;
+
+    protected virtual void Reset()
+    {
+
+    }
+
+    protected virtual void OnEnable () 
     {
 
     }
@@ -15,12 +21,17 @@ public class EnemyControllerMovingForward : MovementController
     // Update is called once per frame
     void Update()
     {
-        if (transform.position.y < -6)
+
+        CheckEnemyFled();
+        transform.position += transform.up * mMoveSpeed * Time.deltaTime;
+    }
+
+    protected void CheckEnemyFled ()
+    {
+        if (transform.position.y < -Const.C_VERTICAL_LIMIT - 2)
         {
-            GameObject.Destroy (gameObject);
+            EnemySpawner.onEnemyFledEvent.Invoke(this.GetComponent<ShipStat>());
             return;
         }
-
-        transform.position += transform.up * mMoveSpeed * Time.deltaTime;
     }
 }

@@ -13,5 +13,43 @@ MonoBehaviour:
   m_Name: TestWave2
   m_EditorClassIdentifier: 
   mEnemySpawningInstruction:
-  - mEnemyController: {fileID: 3606635827886863181, guid: bbbbb4c707d2245988c2641abd85671e, type: 3}
-    mDelay: 0
+  - mEnemyController: {fileID: 4543312791932629686, guid: 68e454009ce334e34af210aef6e1daf8, type: 3}
+    mDelay: 1.4
+  - mEnemyController: {fileID: 4543312791932629686, guid: 68e454009ce334e34af210aef6e1daf8, type: 3}
+    mDelay: 1.4
+  - mEnemyController: {fileID: 4543312791932629686, guid: 68e454009ce334e34af210aef6e1daf8, type: 3}
+    mDelay: 1.4
+  - mEnemyController: {fileID: 4543312791932629686, guid: 68e454009ce334e34af210aef6e1daf8, type: 3}
+    mDelay: 1.4
+  - mEnemyController: {fileID: 4543312791932629686, guid: 68e454009ce334e34af210aef6e1daf8, type: 3}
+    mDelay: 1.4
+  - mEnemyController: {fileID: 4543312791932629686, guid: 68e454009ce334e34af210aef6e1daf8, type: 3}
+    mDelay: 1.4
+  - mEnemyController: {fileID: 4543312791932629686, guid: 68e454009ce334e34af210aef6e1daf8, type: 3}
+    mDelay: 1.4
+  - mEnemyController: {fileID: 4543312791932629686, guid: 68e454009ce334e34af210aef6e1daf8, type: 3}
+    mDelay: 1.4
+  - mEnemyController: {fileID: 4543312791932629686, guid: 68e454009ce334e34af210aef6e1daf8, type: 3}
+    mDelay: 1.4
+  - mEnemyController: {fileID: 4543312791932629686, guid: 68e454009ce334e34af210aef6e1daf8, type: 3}
+    mDelay: 1.4
+  - mEnemyController: {fileID: 4543312791932629686, guid: 68e454009ce334e34af210aef6e1daf8, type: 3}
+    mDelay: 1.4
+  - mEnemyController: {fileID: 4543312791932629686, guid: 68e454009ce334e34af210aef6e1daf8, type: 3}
+    mDelay: 1.4
+  - mEnemyController: {fileID: 4543312791932629686, guid: 68e454009ce334e34af210aef6e1daf8, type: 3}
+    mDelay: 1.4
+  - mEnemyController: {fileID: 4543312791932629686, guid: 68e454009ce334e34af210aef6e1daf8, type: 3}
+    mDelay: 1.4
+  - mEnemyController: {fileID: 4543312791932629686, guid: 68e454009ce334e34af210aef6e1daf8, type: 3}
+    mDelay: 1.4
+  - mEnemyController: {fileID: 4543312791932629686, guid: 68e454009ce334e34af210aef6e1daf8, type: 3}
+    mDelay: 1.4
+  - mEnemyController: {fileID: 4543312791932629686, guid: 68e454009ce334e34af210aef6e1daf8, type: 3}
+    mDelay: 1.4
+  - mEnemyController: {fileID: 4543312791932629686, guid: 68e454009ce334e34af210aef6e1daf8, type: 3}
+    mDelay: 1.4
+  - mEnemyController: {fileID: 4543312791932629686, guid: 68e454009ce334e34af210aef6e1daf8, type: 3}
+    mDelay: 1.4
+  - mEnemyController: {fileID: 4543312791932629686, guid: 68e454009ce334e34af210aef6e1daf8, type: 3}
+    mDelay: 1.4

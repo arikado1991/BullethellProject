@@ -17,7 +17,7 @@ MonoBehaviour:
     mDelay: 1
   - mEnemyController: {fileID: -8518686749943393336, guid: 0c6a024928e2543d78709d6fa54337c5, type: 3}
     mDelay: 1
-  - mEnemyController: {fileID: 8278254558451378233, guid: bbbbb4c707d2245988c2641abd85671e, type: 3}
+  - mEnemyController: {fileID: 4543312791932629686, guid: 68e454009ce334e34af210aef6e1daf8, type: 3}
     mDelay: 1
   - mEnemyController: {fileID: -8518686749943393336, guid: 0c6a024928e2543d78709d6fa54337c5, type: 3}
     mDelay: 1
@@ -28,4 +28,6 @@ MonoBehaviour:
   - mEnemyController: {fileID: -8518686749943393336, guid: 0c6a024928e2543d78709d6fa54337c5, type: 3}
     mDelay: 1
   - mEnemyController: {fileID: 8278254558451378233, guid: bbbbb4c707d2245988c2641abd85671e, type: 3}
+    mDelay: 2
+  - mEnemyController: {fileID: 8566223948063966303, guid: 8e80cd91ae2cc4433b3b98a9a71482f8, type: 3}
     mDelay: 1

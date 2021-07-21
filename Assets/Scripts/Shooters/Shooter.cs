@@ -31,10 +31,20 @@ public class Shooter : MonoBehaviour
     {
         if (remainingCooldown > 0)
             return;
+        Projectile newProjectTile;
+        try
+        {
+            newProjectTile = EnemySpawner.Instance().SpawnObject(transform.position, mProjectile, transform.up).GetComponent<Projectile>();
+            newProjectTile.transform.up = transform.up;
+            newProjectTile.SetTag(mTag);
 
-        Projectile newProjectTile = GameObject.Instantiate (mProjectile, transform.position, Quaternion.identity);
-        newProjectTile.transform.up = transform.up;
-        newProjectTile.SetTag (mTag);
+            AudioManager.onPlaySoundRequest.Invoke("Cannon");
+        }
+        catch (System.NullReferenceException)
+        {
+            Debug.LogError("No projectile component is attached to the projectile Prefab");
+        }
+       
 
         remainingCooldown = cooldown;
     
