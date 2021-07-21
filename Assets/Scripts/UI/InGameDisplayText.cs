@@ -18,15 +18,16 @@ public class InGameDisplayText : MonoBehaviour
         PlayerShipStat.onPlayerDestroyedEvent.AddListener (OnPlayerDestroyedEventHandler);
         PlayerShipStat.onPlayerHealthChangeEvent.AddListener (OnPlayerHealthChangeEventHandler);
         PlayerShipStat.onPlayerScoreChangeEvent.AddListener (OnPlayerScoreChangeEventHandler);
+        GameEvaluator.onLevelClearEvent.AddListener(OnPlayerClearWave);
     }
     void OnDisable()
     {
-        PlayerShipStat.onPlayerDestroyedEvent.RemoveListener (OnPlayerDestroyedEventHandler);
-         PlayerShipStat.onPlayerHealthChangeEvent.RemoveListener (OnPlayerHealthChangeEventHandler);
-        PlayerShipStat.onPlayerScoreChangeEvent.RemoveListener (OnPlayerScoreChangeEventHandler);
+        PlayerShipStat.onPlayerDestroyedEvent.RemoveListener(OnPlayerDestroyedEventHandler);
+        PlayerShipStat.onPlayerHealthChangeEvent.RemoveListener(OnPlayerHealthChangeEventHandler);
+        PlayerShipStat.onPlayerScoreChangeEvent.RemoveListener(OnPlayerScoreChangeEventHandler);
+        GameEvaluator.onLevelClearEvent.RemoveListener(OnPlayerClearWave);
     }
-
-    // Update is called once per frame
+        // Update is called once per frame
     void Update()
     {
         

@@ -12,7 +12,7 @@ public class EnemySidewayMovementController : EnemyControllerMovingForward
     [SerializeField]
     protected float mVerticalRemainingDistance;
 
-    void Reset ()
+    protected override void Reset ()
     {
         mHorizontalDirection = 1;
 
@@ -26,9 +26,9 @@ public class EnemySidewayMovementController : EnemyControllerMovingForward
         Reset();
     }
     protected void Update ()
-    {
-        CheckEnemyFled();
-        if (mVerticalRemainingDistance == -C_VERTICAL_STEP) //move left or right
+    { 
+    CheckEnemyFled();
+        if (mVerticalRemainingDistance <= -C_VERTICAL_STEP) //move left or right
         {
             transform.position += mMoveSpeed * mHorizontalDirection * Vector3.right * Time.deltaTime;
             if (transform.position.x * Mathf.Sign (mHorizontalDirection) > Const.C_HORIZONTAL_LIMIT)

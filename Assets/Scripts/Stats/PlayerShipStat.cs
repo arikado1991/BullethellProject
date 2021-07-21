@@ -14,7 +14,7 @@ public class PlayerShipStat : ShipStat
     int mScore = 0;
 
     // Start is called before the first frame update
-    void Awake()
+    protected override void Awake()
     {
         mTag = Tag.Player;
 
@@ -31,7 +31,7 @@ public class PlayerShipStat : ShipStat
 
     }
 
-    protected void OnDisable ()
+    protected override void OnDisable ()
     {
         EnemyShipStat.onEnemyDestroyedEvent.RemoveListener (OnEnemyDestroyedEventHandler);
     }
@@ -53,9 +53,9 @@ public class PlayerShipStat : ShipStat
         
     }
 
-    protected override void GetHit (int damage)
+    protected override void GetHit (int pDamage)
     {
-        base.GetHit(damage);
+        base.GetHit(pDamage);
         onPlayerGetHitEvent.Invoke();
         onPlayerHealthChangeEvent.Invoke(mHealth);
         if (mHealth <= 0)

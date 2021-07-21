@@ -7,9 +7,9 @@ using System;
 public class EnemySpawner : MonoBehaviour
 {
     static public UnityEvent <ShipStat> onEnemyFledEvent;
-    static public UnityEvent<PoolableObject, int, Vector3> onObjectSpawnRequestAtIndexedSpawningPoint;
-    static public UnityEvent<PoolableObject, Vector3, Vector3> onObJectSpawnRequestAtPosition;
-
+    static public UnityEvent<PoolableObject, int, Vector3> onObjectSpawnRequestAtIndexedSpawningPointEvent;
+    static public UnityEvent<PoolableObject, Vector3, Vector3> onObJectSpawnRequestAtPositionEvent;
+    static public UnityEvent<EnemyShipStat> onEnemyShipSpawnEvent;
     // Start is called before the first frame update
     // GameObject[] spawningList;
     static EnemySpawner mInstance;
@@ -47,8 +47,6 @@ public class EnemySpawner : MonoBehaviour
         cooldown = 3;
         currentEnemyIndex = 0;
 
- 
-
         onEnemyFledEvent.AddListener(OnEnemyFledEventHandler);
         EnemyShipStat.onEnemyDestroyedEvent.AddListener (OnEnemyFledEventHandler);
         
@@ -80,7 +78,15 @@ public class EnemySpawner : MonoBehaviour
 
                 ShipStat newEnemySample = mWaveDescription.mEnemySpawningInstruction[currentEnemyIndex].mEnemyController;
 
-                SpawnObject(spawnPosition, newEnemySample, Vector3.down);
+                PoolableObject newEnemy = SpawnObject(spawnPosition, newEnemySample, Vector3.down);
+                try
+                {
+                    onEnemyShipSpawnEvent.Invoke(newEnemy.GetComponent<EnemyShipStat>());
+                } 
+                catch (System.NullReferenceException)
+                {
+                    Debug.LogError("Missing EnemyShipStat component in enemy prefab.");
+                }
 
                 cooldown = mWaveDescription.mEnemySpawningInstruction[currentEnemyIndex].mDelay;
                 currentEnemyIndex += 1;

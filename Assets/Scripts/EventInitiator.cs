@@ -12,10 +12,11 @@ public class EventInitiator : MonoBehaviour
     {
         EnemyShipStat.onEnemyDestroyedEvent = new UnityEvent<EnemyShipStat>();
 
-        EnemySpawner.onObjectSpawnRequestAtIndexedSpawningPoint = new UnityEvent<PoolableObject, int, Vector3>();
-        EnemySpawner.onObJectSpawnRequestAtPosition = new UnityEvent <PoolableObject, Vector3, Vector3>();
+        EnemySpawner.onObjectSpawnRequestAtIndexedSpawningPointEvent = new UnityEvent<PoolableObject, int, Vector3>();
+        EnemySpawner.onObJectSpawnRequestAtPositionEvent = new UnityEvent <PoolableObject, Vector3, Vector3>();
 
         EnemySpawner.onEnemyFledEvent = new UnityEvent<ShipStat>();
+        EnemySpawner.onEnemyShipSpawnEvent = new UnityEvent<EnemyShipStat>();
 
         PlayerShipStat.onPlayerDestroyedEvent = new UnityEvent <PlayerShipStat>();
         PlayerShipStat.onPlayerGetHitEvent = new UnityEvent ();
@@ -25,6 +26,8 @@ public class EventInitiator : MonoBehaviour
         AudioManager.onPlaySoundRequest = new UnityEvent<string> ();
 
         AudioManager.onClipFinishEvent = new UnityEvent<PoolableAudioSource> ();
+
+        GameEvaluator.onLevelClearEvent = new UnityEvent();
 
 
         scene.SetActive(true);

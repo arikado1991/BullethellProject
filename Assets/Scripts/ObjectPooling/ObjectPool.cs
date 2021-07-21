@@ -61,7 +61,6 @@ public class ObjectPool : Object
     /// <returns>The object.</returns>
     public PoolableObject GetObject()
     {
-        Debug.Log("Pool count " + m_Pool.Count);
         if (m_Pool.Count == 0)
         {
             InstantiateObject();
@@ -79,14 +78,9 @@ public class ObjectPool : Object
     /// <param name="obj">Object.</param>
     public void RetrieveObject (PoolableObject obj) 
     {
-        Debug.Log ("Object retrieved.\n");
+
         m_Pool.Enqueue(obj);
         obj.onPoolableObjectDisableEvent -= RetrieveObject;
-    }
-
-    public void NewStuff ()
-    {
-        Debug.Log ("Super easy, beryinconvini");
     }
 
     void SetPrefab (PoolableObject newPrefab)
