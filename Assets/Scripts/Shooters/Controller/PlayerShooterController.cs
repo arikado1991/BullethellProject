@@ -6,7 +6,7 @@ public class PlayerShooterController : ShooterController
 {
     [SerializeField]
     float mCooldown = 0.5f;
-    float mCurrentCooldown = 0f;
+    float mCurrentCooldown = 2f;
 
     int mActivatedShooterCount = 1;
 
@@ -18,7 +18,7 @@ public class PlayerShooterController : ShooterController
     override protected void OnEnable()
     {
         base.OnEnable();
-        mCurrentCooldown = 0f;
+        mCurrentCooldown = mCooldown;
         PlayerPowerUpProcessor.onExtraShooterPowerUpAcquiredEvent.AddListener(AddShooter);
         PlayerShipStat.onPlayerGetHitEvent.AddListener(RemoveShooters);
     }
@@ -32,6 +32,7 @@ public class PlayerShooterController : ShooterController
     // Update is called once per frame
     void Update()
     {
+        mCurrentCooldown -= Time.deltaTime;
         if (mCurrentCooldown > 0)
         {
             return;
@@ -39,7 +40,9 @@ public class PlayerShooterController : ShooterController
         if (Input.GetKey ("space"))
         {
             mOnShootEvent.Invoke();
+            //mCurrentCooldown = mCooldown;
         }
+        
     }
     public void AddShooter()
     {
