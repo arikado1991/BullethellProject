@@ -10,7 +10,7 @@ public class PowerUpSpawner : MonoBehaviour
     private void OnEnable()
     {
         GetSum();
-        EnemyShipStat.onEnemyDestroyedEvent.AddListener(RollPowerUp);
+        EnemyWaveSpawner.onEnemyShipSpawnEvent.AddListener(RollPowerUp);
     }
 
     private void RollPowerUp (EnemyShipStat shipStat)
@@ -25,7 +25,9 @@ public class PowerUpSpawner : MonoBehaviour
             currentPowerUp = mPowerUpRngTable.mTable[i].powerUp;
             if (roll < currentItemRate)
             {
-                IngameObjectManager.Instance().SpawnObject(shipStat.transform.position, currentPowerUp, Vector3.up);
+                DropOnDestroy newDrop = shipStat.gameObject.AddComponent<DropOnDestroy>();
+                newDrop.dropPrefab = currentPowerUp;
+                return;
             }
             else
             {

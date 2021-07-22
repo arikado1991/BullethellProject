@@ -55,6 +55,41 @@ public class IngameObjectManager : MonoBehaviour
         enemy.gameObject.SetActive(false);
     }
 
+    // Update is called once per frame
+    void Update()
+    {
+        try
+        {
+            /*
+            if (cooldown <= 0)
+            {
+                int spawningPointIndex = 0;
+                Vector3 spawnPosition = mSpawningPointTransforms[spawningPointIndex].position;
+
+                ShipStat newEnemySample = mWaveDescription.mEnemySpawningInstruction[currentEnemyIndex].mEnemyController;
+
+                PoolableObject newEnemy = SpawnObject(spawnPosition, newEnemySample, Vector3.down);
+                try
+                {
+                    onEnemyShipSpawnEvent.Invoke(newEnemy.GetComponent<EnemyShipStat>());
+                } 
+                catch (System.NullReferenceException)
+                {
+                    Debug.LogError("Missing EnemyShipStat component in enemy prefab.");
+                }
+
+                cooldown = mWaveDescription.mEnemySpawningInstruction[currentEnemyIndex].mDelay;
+                currentEnemyIndex += 1;
+            }
+            cooldown -= Time.deltaTime;*/
+        }
+        catch (IndexOutOfRangeException)
+        {
+            Debug.LogError("Wave is clear.\n");
+            return;
+        }
+    }
+
     public PoolableObject SpawnObject (Vector3 spawnPosition, PoolableObject objectSample, Vector3 facingDirection)
     {
         PoolableObject newObjectInstance;
@@ -67,11 +102,6 @@ public class IngameObjectManager : MonoBehaviour
         catch (KeyNotFoundException)
         {
             pool = new ObjectPool();
-            GameObject poolParentGameObject =  new GameObject();
-            poolParentGameObject.transform.SetParent(transform);
-            poolParentGameObject.name = string.Format ("{0}Pool", objectSample.name);
-            pool.SetParentTransform(poolParentGameObject.transform); 
-
             pool.Init(objectSample, 5);
 
             mObjectPoolDictionary[objectSample.name] = pool;

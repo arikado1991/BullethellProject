@@ -57,23 +57,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5652588271493503363, guid: 33ee82ba4ada448c683f4f48b5c9994d, type: 3}
       propertyPath: m_Color.r
-      value: 0.24928817
+      value: 0.8584906
       objectReference: {fileID: 0}
     - target: {fileID: 5652588271493503363, guid: 33ee82ba4ada448c683f4f48b5c9994d, type: 3}
       propertyPath: m_Color.g
-      value: 1
+      value: 0.84459436
       objectReference: {fileID: 0}
     - target: {fileID: 5652588271493503363, guid: 33ee82ba4ada448c683f4f48b5c9994d, type: 3}
       propertyPath: m_Color.b
-      value: 0.023584902
+      value: 0.62767
       objectReference: {fileID: 0}
-    - target: {fileID: 5652588271493503363, guid: 33ee82ba4ada448c683f4f48b5c9994d, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
     - target: {fileID: 5652588271493503372, guid: 33ee82ba4ada448c683f4f48b5c9994d, type: 3}
       propertyPath: m_Name
-      value: HealthCapsule
+      value: Health
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 33ee82ba4ada448c683f4f48b5c9994d, type: 3}

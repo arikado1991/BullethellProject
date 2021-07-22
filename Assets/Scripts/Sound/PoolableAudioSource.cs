@@ -23,6 +23,6 @@ public class PoolableAudioSource : PoolableObject
     protected override void OnDisable()
     {
         base.OnDisable();
-//        AudioManager.onClipFinishEvent.Invoke (this);
+        AudioManager.onClipFinishEvent.Invoke (this);
     }
 }
