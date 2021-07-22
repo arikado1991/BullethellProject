@@ -16,21 +16,21 @@ public class InGameDisplayText : MonoBehaviour
     void OnEnable()
     {
        
-        PlayerShipStat.onPlayerDestroyedEvent.AddListener (OnPlayerDestroyedEventHandler);
-        PlayerShipStat.onPlayerHealthChangeEvent.AddListener (OnPlayerHealthChangeEventHandler);
-        GameEvaluator.onPlayerScoreChangeEvent.AddListener (OnPlayerScoreChangeEventHandler);
-        GameEvaluator.onLevelClearEvent.AddListener(OnPlayerClearWave);
-        GameEvaluator.onNewHighscoreEvent.AddListener(OnNewHighscoreEventHandler);
-        GameEvaluator.onNormalScoreEvent.AddListener(OnNormalScoreEventHandler);
+       // PlayerShipStat.onPlayerDestroyedEvent.AddListener (OnPlayerDestroyedEventHandler);
+        //PlayerShipStat.onPlayerHealthChangeEvent.AddListener (OnPlayerHealthChangeEventHandler);
+        //GameEvaluator.onPlayerScoreChangeEvent.AddListener (OnPlayerScoreChangeEventHandler);
+        //GameEvaluator.onLevelClearEvent.AddListener(OnPlayerClearWave);
+       // GameEvaluator.onNewHighscoreEvent.AddListener(OnNewHighscoreEventHandler);
+     //   GameEvaluator.onNormalScoreEvent.AddListener(OnNormalScoreEventHandler);
     }
     void OnDisable()
     {
-        PlayerShipStat.onPlayerDestroyedEvent.RemoveListener(OnPlayerDestroyedEventHandler);
-        PlayerShipStat.onPlayerHealthChangeEvent.RemoveListener(OnPlayerHealthChangeEventHandler);
-        GameEvaluator.onPlayerScoreChangeEvent.RemoveListener(OnPlayerScoreChangeEventHandler);
-        GameEvaluator.onLevelClearEvent.RemoveListener(OnPlayerClearWave);
-        GameEvaluator.onNewHighscoreEvent.RemoveListener(OnNewHighscoreEventHandler);
-        GameEvaluator.onNormalScoreEvent.RemoveListener(OnNormalScoreEventHandler);
+        //PlayerShipStat.onPlayerDestroyedEvent.RemoveListener(OnPlayerDestroyedEventHandler);
+      //  PlayerShipStat.onPlayerHealthChangeEvent.RemoveListener(OnPlayerHealthChangeEventHandler);
+      //  GameEvaluator.onPlayerScoreChangeEvent.RemoveListener(OnPlayerScoreChangeEventHandler);
+       // GameEvaluator.onLevelClearEvent.RemoveListener(OnPlayerClearWave);
+       // GameEvaluator.onNewHighscoreEvent.RemoveListener(OnNewHighscoreEventHandler);
+       // GameEvaluator.onNormalScoreEvent.RemoveListener(OnNormalScoreEventHandler);
     }
         // Update is called once per frame
     void Update()

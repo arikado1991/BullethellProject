@@ -37,6 +37,7 @@ public class EventInitiator : MonoBehaviour
             AudioManager.onBGMSettingChangeEvent = new UnityEvent<bool>();
 
 
+            GameEvaluator.onGameEndEvent = new UnityEvent();
             GameEvaluator.onLevelClearEvent = new UnityEvent();
             GameEvaluator.onPlayerScoreChangeEvent = new UnityEvent<int>();
             GameEvaluator.onNewHighscoreEvent = new UnityEvent<int, int>();

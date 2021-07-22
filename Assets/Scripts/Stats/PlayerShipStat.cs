@@ -24,6 +24,7 @@ public class PlayerShipStat : ShipStat
     {
         base.OnEnable();
         PlayerPowerUpProcessor.onHealthCapsuleAcquiredEvent.AddListener(OnHealthCapsuleAcquiredEventHandler);
+        GameEvaluator.onGameEndEvent.AddListener(OnGameEndEventHandler);
         Reset();
     }
   
@@ -60,9 +61,15 @@ public class PlayerShipStat : ShipStat
         onPlayerHealthChangeEvent.Invoke(mHealth);
     }
 
+    void OnGameEndEventHandler()
+    {
+        gameObject.SetActive(false);
+    }
+
     protected override void OnDisable()
     {
         base.OnDisable();
         PlayerPowerUpProcessor.onHealthCapsuleAcquiredEvent.RemoveListener(OnHealthCapsuleAcquiredEventHandler);
+        GameEvaluator.onGameEndEvent.RemoveListener(OnGameEndEventHandler);
     }
 }

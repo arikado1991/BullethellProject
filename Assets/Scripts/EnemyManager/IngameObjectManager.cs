@@ -9,6 +9,7 @@ public class IngameObjectManager : MonoBehaviour
     static public UnityEvent <ShipStat> onEnemyFledEvent;
     static public UnityEvent<PoolableObject, int, Vector3> onObjectSpawnRequestAtIndexedSpawningPointEvent;
     static public UnityEvent<PoolableObject, Vector3, Vector3> onObJectSpawnRequestAtPositionEvent;
+
    
     // Start is called before the first frame update
     // GameObject[] spawningList;
@@ -39,6 +40,8 @@ public class IngameObjectManager : MonoBehaviour
     {
         onEnemyFledEvent.AddListener(OnEnemyFledEventHandler);
         EnemyShipStat.onEnemyDestroyedEvent.AddListener (OnEnemyFledEventHandler);
+
+        GameEvaluator.onGameEndEvent.AddListener (OnGameEndEventHandler);
         
 
 
@@ -48,6 +51,7 @@ public class IngameObjectManager : MonoBehaviour
     {
         onEnemyFledEvent.RemoveListener(OnEnemyFledEventHandler);
         EnemyShipStat.onEnemyDestroyedEvent.RemoveListener (OnEnemyFledEventHandler);
+        GameEvaluator.onGameEndEvent.RemoveListener(OnGameEndEventHandler);
     }
 
     void OnEnemyFledEventHandler (ShipStat enemy)
@@ -85,5 +89,10 @@ public class IngameObjectManager : MonoBehaviour
         newObjectInstance.transform.up = facingDirection;
 
         return newObjectInstance;
+    }
+
+    void OnGameEndEventHandler()
+    {
+        gameObject.SetActive(false);
     }
 }

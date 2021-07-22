@@ -12,6 +12,7 @@ public class GameEvaluator : MonoBehaviour
     int mEnemyFledCount;
     int mEnemyDestroyedCount;
 
+    public static UnityEvent onGameEndEvent;
     public static UnityEvent onLevelClearEvent;
     public static UnityEvent<int> onPlayerScoreChangeEvent;
 
@@ -30,6 +31,8 @@ public class GameEvaluator : MonoBehaviour
         EnemyWaveSpawner.onEnemyWaveStartEvent.AddListener(OnWaveStartEventHandler);
 
         mScore = 0;
+        onPlayerScoreChangeEvent.Invoke(mScore);
+
         mTotalEnemyCount = mRemainingEnemyCount = mEnemyDestroyedCount = mEnemyFledCount = 0;
 
     }
@@ -68,7 +71,8 @@ public class GameEvaluator : MonoBehaviour
 
     void OnPlayerDestroyedEventHandler(PlayerShipStat player)
     {
-
+        GetGameResult();
+        onGameEndEvent.Invoke();
     }
 
     void OnEnemyShipSpawnEventHandler(EnemyShipStat enemy)
@@ -88,9 +92,14 @@ public class GameEvaluator : MonoBehaviour
 
     void EndWave()
     {
-
+        onGameEndEvent.Invoke();
         onLevelClearEvent.Invoke();
         OnDisable();
+        GetGameResult();
+    }
+
+    void GetGameResult()
+    {
         int prevHighscore = PlayerPrefs.GetInt("Highscore", -1);
         if (prevHighscore < mScore)
         {
@@ -107,7 +116,6 @@ public class GameEvaluator : MonoBehaviour
 #endif
         }
     }
-
     void OnWaveStartEventHandler(int waveEnemyCount)
     {
         Debug.Log("Wave enemy count = " + waveEnemyCount);
