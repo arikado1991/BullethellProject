@@ -17,6 +17,8 @@ public class ObjectPool : Object
     Queue<PoolableObject> m_Pool;
     protected PoolableObject mPrefab;
     public bool canGrow = true;
+
+    Transform m_ParentTransform;
     int cloneCount;
 
     /// <summary>
@@ -48,7 +50,7 @@ public class ObjectPool : Object
         obj.name = string.Format("{0} #{1}", mPrefab.name, cloneCount);
 
        // obj.SubscribeOnDisable (RetrieveObject);
-
+        obj.transform.SetParent(m_ParentTransform);
         
         m_Pool.Enqueue(obj);
         cloneCount++;
@@ -88,6 +90,10 @@ public class ObjectPool : Object
         mPrefab = newPrefab;
     }
 
+    public void SetParentTransform (Transform transform)
+    {
+        m_ParentTransform = transform;
+    }
 }
 
 

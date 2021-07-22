@@ -4,12 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class MenuBehaciour : MonoBehaviour
+public class MainMenuUIPanelController : UIPanelController
 {
-    public Button start, help, option, returnButton, quit;
+
     void Start()
     {
-        
+        UIStackController.onLoadUIPanelRequestEvent.Invoke(this);
     }
     void Update()
     {
@@ -17,20 +17,20 @@ public class MenuBehaciour : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
     }
     public void OnPressedStart()
-    { 
+    {
         SceneManager.LoadScene("Level1");
     }
-    public void OnPressedHelp()
+    public void OnPressedHelp(UIPanelController controller)
     {
-        SceneManager.LoadScene("HelpScene");
+        UIStackController.onLoadUIPanelRequestEvent.Invoke(controller);
     }
-    public void OnPressedOptions()
+    public void OnPressedOptions(UIPanelController optionPanel)
     {
-        SceneManager.LoadScene("OptionsScene");
+        UIStackController.onLoadUIPanelRequestEvent.Invoke(optionPanel);
     }
     public void OnPressedReturn()
     {
-        SceneManager.LoadScene("Main Menu");
+        UIStackController.onUIPanelBackButtonEvent.Invoke();
     }
     public void OnPressedQuit()
     {
