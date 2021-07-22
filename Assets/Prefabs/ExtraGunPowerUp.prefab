@@ -57,9 +57,9 @@ GameObject:
   - component: {fileID: 5652588271493503362}
   - component: {fileID: 5652588271493503363}
   - component: {fileID: 5820032394796897086}
-  - component: {fileID: 2330424554466723984}
   - component: {fileID: 2804474046480994839}
   - component: {fileID: 3870731547158873947}
+  - component: {fileID: -4764403013666683666}
   m_Layer: 0
   m_Name: ExtraGunPowerUp
   m_TagString: Untagged
@@ -154,19 +154,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
---- !u!114 &2330424554466723984
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5652588271493503372}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4619f6f4924e3400fa4755f855b41457, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mMoveSpeed: 1
 --- !u!114 &2804474046480994839
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,7 +168,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mMaxHealth: 1
   mTag: -1
-  mKillScore: 0
   powerUpType: 1
   content: {fileID: 0}
 --- !u!58 &3870731547158873947
@@ -200,6 +186,19 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.1
+--- !u!114 &-4764403013666683666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5652588271493503372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8c99c257f3574e6386dc8d77b881e9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mMoveSpeed: 2
 --- !u!1 &7902147076595297673
 GameObject:
   m_ObjectHideFlags: 0
@@ -244,3 +243,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3b696cb3b7674530b8883f7b5d4b4bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mShooters: []

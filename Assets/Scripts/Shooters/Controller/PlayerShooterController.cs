@@ -60,7 +60,9 @@ public class PlayerShooterController : ShooterController
         for (int i = 1; i < mActivatedShooterCount;  i++)
         {
             mShooters[i].gameObject.SetActive(false);
-            ReadyAllShooters();
+            
         }
+        mActivatedShooterCount = 1;
+        ReadyAllShooters();
     }
 }

@@ -7,7 +7,7 @@ using System;
 public struct PowerUpRng
 {
     public PowerUp powerUp;
-    [Range(0, 99)]
+
     public int rate;
 }
 

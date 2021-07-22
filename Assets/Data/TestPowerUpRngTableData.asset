@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mTable:
   - powerUp: {fileID: 2804474046480994839, guid: 33ee82ba4ada448c683f4f48b5c9994d, type: 3}
-    rate: 13
+    rate: 10
   - powerUp: {fileID: 4142387339201862467, guid: 6f6a0dde785814f16989f30390e70a8d, type: 3}
-    rate: 51
+    rate: 5
+  - powerUp: {fileID: 0}
+    rate: 30
